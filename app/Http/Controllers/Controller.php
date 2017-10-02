@@ -194,8 +194,8 @@ class Controller extends BaseController
     protected function sendVerificationEmail($email, $subject, $confirmation_code)
     {
         try {
-            Mail::send('emails.verification', compact('email', 'confirmation_code'), function ($message) use ($email, $subject) {
-                $message->from('support@dribbler.com')
+            Mail::send('emails.verification', compact('email', '/'.'confirmation_code'), function ($message) use ($email, $subject) {
+                $message->from('support@dribbler.org')
                     ->to($email)
                     ->subject($subject);
             });
@@ -207,7 +207,7 @@ class Controller extends BaseController
     {
         try {
             Mail::send('emails.common_email', compact('email', 'content'), function ($message) use ($email, $subject) {
-                $message->from('support@dribbler.com')
+                $message->from('support@dribbler.org')
                     ->to($email)
                     ->subject($subject);
             });

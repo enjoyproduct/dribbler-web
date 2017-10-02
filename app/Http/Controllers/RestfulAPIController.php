@@ -109,14 +109,16 @@ class RestfulAPIController extends Controller
     public function verify_user() {
         $email = Input::get('email');
         $confirmation_code = Input::get('confirmation_code');
+
         $user = User::where('email', $email)->where('confirmation_code', $confirmation_code)->first();
         if (empty($user)) {
             return $this->responseUnauthorizedError('Sorry, you are not verified');
         } else {
-            $user->verfied = 1;
+            $user->verified = 1;
             $user->confirmation_code = '';
             $user->save();
-            return $this->responseSuccess();
+            $response['result'] = 'success';
+            return $this->responseSuccess($response);
         }
     }
     public function register()
@@ -172,7 +174,10 @@ class RestfulAPIController extends Controller
          if (!$user->verified) {
             $user->confirmation_code = str_random(4);
             $user->save();
-            $this->sendVerificationEmail($user->email, 'Verification Email', $user->confirmation_code);
+//            $this->sendVerificationEmail($user->email, 'Verification Email', $user->confirmation_code);
+             $message = "Thanks for creating an account of dribbler. Please input verify code in your app. \n Verification code:  " . $user->confirmation_code ;
+            $this->sendEmail($user->email, 'Verification Email', $message);
+
          }
 
 

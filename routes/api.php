@@ -18,6 +18,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/users/me', 'RestfulAPIController@login');
     Route::post('/users/register', 'RestfulAPIController@register');
     Route::post('/password/forgot', 'RestfulAPIController@forgot_password');
+    Route::post('/users/verify', 'RestfulAPIController@verify_user');
     /**
      * Routes base on JWT Token
      */
@@ -26,7 +27,6 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/users/me/profile', 'RestfulAPIController@postProfile');
         Route::post('users/me/logout', 'RestfulAPIController@logout');
         Route::delete('/users/me', 'RestfulAPIController@deleteProfile');
-        Route::post('/users/verify', 'RestfulAPIController@verify_user');
         Route::get('/users/{user_id}/status', 'RestfulAPIController@getProfileStatus');
         Route::get('/users/{user_id}/profile', 'RestfulAPIController@getOtherUserProfile');
         Route::get('/users/update_profile', 'RestfulAPIController@updateProfiles');
