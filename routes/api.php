@@ -17,7 +17,7 @@ Route::group(['namespace' => 'Admin'], function () {
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/users/me', 'RestfulAPIController@login');
     Route::post('/users/register', 'RestfulAPIController@register');
-    Route::post('/password/forgot', 'RestfulAPIController@forgot_password');
+        Route::post('/password/forgot', 'RestfulAPIController@forgot_password');
     Route::post('/users/verify', 'RestfulAPIController@verify_user');
     /**
      * Routes base on JWT Token
