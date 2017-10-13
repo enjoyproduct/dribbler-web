@@ -581,8 +581,12 @@ class RestfulAPIController extends Controller
             $all_tricks = Trick::get();
             $tricks = array();
             foreach ($all_tricks as $trick) {
-                $trick_tags =   explode(",", $trick->trick_tags);
-                if (in_array($tag->tag_name, $trick_tags)) {
+
+                $tags = Tag::leftJoin('trick_tag', 'trick_tag.tag_id', 'tags.tag_id')
+                    ->where('trick_tag.trick_id', $trick->trick_id)
+                    ->pluck('tags.tag_name')
+                    ->toArray();
+                if (in_array($tag->tag_name, $tags)) {
                     array_push($tricks, $trick);
                 }
             }

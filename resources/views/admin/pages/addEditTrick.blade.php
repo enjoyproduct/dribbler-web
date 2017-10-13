@@ -19,6 +19,8 @@
             var description_count = 0;
             var description_text = "{{isset($trick) ? $trick->trick_description : ''}}";
             description_text = description_text.replace(/&quot;/g, '\"');
+            description_text = description_text.replace(/&lt;/g, '<');
+            description_text = description_text.replace(/&gt;/g, '>');
             console.log(description_text);
 
             $("#btn_add_description").on("click", function () {

@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="panel panel-flat">
                     <div class="panel-body">
-                        <form class="form-horizontal" action="@if (isset($tag)) {{url('/admin/categories/'.$category->category_id.'/update')}} @else {{url('/admin/categories/create')}} @endif" enctype="multipart/form-data" method="post">
+                        <form class="form-horizontal" action="@if (isset($category)) {{url('/admin/categories/'.$category->category_id.'/update')}} @else {{url('/admin/categories/create')}} @endif" enctype="multipart/form-data" method="post">
                             {{ csrf_field() }}
 
                             <div class="form-group">

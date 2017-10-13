@@ -98,7 +98,7 @@ class TrickController extends Controller
             for ($i = 0; $i < count($pictures); $i ++) {
 
                 try {
-                    $thumbnail = Input::file('thumbnail');
+                    $thumbnail = Input::file('picture');
                     $img = Image::make($thumbnail)->encode('png')->resize(300, 300)->stream();
                     $thumbnailFileName = $trick->category_id . '/'.$trick->trick_title.'/description_'.$i .'.'. $thumbnail->extension();
                     Storage::disk('S3Video')->put($thumbnailFileName, (string)$img, 'public');
