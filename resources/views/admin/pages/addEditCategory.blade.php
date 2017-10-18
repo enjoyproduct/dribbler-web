@@ -84,6 +84,12 @@
                     <div class="panel-body">
                         <form class="form-horizontal" action="@if (isset($category)) {{url('/admin/categories/'.$category->category_id.'/update')}} @else {{url('/admin/categories/create')}} @endif" enctype="multipart/form-data" method="post">
                             {{ csrf_field() }}
+                            
+                            <div class="form-group" hidden="true">
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="" name="category_id" value="{{isset($category) ? $category->category_id : ''}}" hidden="true">
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="control-label col-lg-2"> Category Name</label>
@@ -96,8 +102,20 @@
                                 <label class="control-label col-lg-2"> Free or Premium</label>
                                 <div class="col-lg-10">
                                     <select class="select" name="lock" required>
-                                        <option value="0">Free</option>
-                                        <option value="1">Premium</option>
+                                        <option value="0" 
+                                            @if (isset($category))
+                                                @if ($category->lock == '0')
+                                                    selected
+                                                @endif
+                                            @endif
+                                                    >Free</option>
+                                        <option value="1" 
+                                            @if (isset($category))
+                                                @if ($category->lock == '1')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            >Premium</option>
                                     </select>
                                 </div>
                             </div>

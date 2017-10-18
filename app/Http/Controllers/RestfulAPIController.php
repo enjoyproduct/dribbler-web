@@ -862,7 +862,7 @@ class RestfulAPIController extends Controller
             ->select('try_on', 'trick_id', 'dribbler_id', 'created_at')
             ->where('user_id', $user->id)
             ->where('trick_id', $trick_id)
-            ->orderBy('try_on', 'asc')
+            ->orderBy('created_at', 'desc')
             ->limit(10)
             ->get();
 
